@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Registration - University of Kent</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('signup-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .signup-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        .signup-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .signup-container input, .signup-container select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .signup-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Teacher Registration</h2>
+        <div class="container">
+            {% for message in messages %}
+                <h5>
+                    <div class="alert alert-danger mt-5" style="width: 50%;">
+                        {{ message }}
+                    </div>
+                </h5>
+            {% endfor %}
+        </div>
+        <form action="{% url 'addTeacher' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" placeholder="First Name" name="firstname" required>
+            <input type="text" placeholder="Last Name" name="lastname" required>
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <input type="password" placeholder="Confirm Password" name="cpassword" required>
+            <input type="text" placeholder="Address" name="address" required>
+            <input type="number" placeholder="Age" name="age" required>
+            <input type="email" placeholder="Email Address" name="email" required>
+            <input type="tel" placeholder="Contact Number" name="contact_number" required>
+            <input type="file" name="teacher_image" accept="image/*" required>
+            <select name="course" required>
+                <option  value="" disabled selected>Select a Course</option>
+                {% for course in courses %}
+                <option value="{{ course.id }}">{{ course.course_name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Register</button>
+        </form>

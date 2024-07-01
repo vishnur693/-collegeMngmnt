@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .navbar {
+            width: 100%;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar h2 {
+            color: #fff;
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .navbar .nav-links {
+            display: flex;
+        }
+        .navbar a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #495057;
+            transform: scale(1.05);
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2 > <a href="adminHome">Kent University</a></h2>
+        <div class="nav-links">
+            <a href="{% url 'addCourse' %}">Add Course</a>
+            <a href="{% url 'addStudent' %}">Add Student</a>
+            <a href="{% url 'showStudents' %}">Show Students</a>
+            <a href="{% url 'loginPage' %}" style="background-color: #dc3545;">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Add Course</h1>
+        <form action="{% url 'course_db' %}" method="post">
+            {% csrf_token %}
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName" required>
+
+            <label for="courseFee">Course Fee:</label>
+            <input type="number" id="courseFee" name="courseFee" required>
+
+            <input type="submit" value="Add Course">
+        </form>
+    </div>
+</body>
+</html>

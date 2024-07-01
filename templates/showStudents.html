@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .navbar {
+            width: 100%;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar h2 {
+            color: #fff;
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .navbar .nav-links {
+            display: flex;
+        }
+        .navbar a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #495057;
+            transform: scale(1.05);
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 700;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .action-links a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .action-links a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2 > <a href="adminHome">Kent University</a></h2>
+        <div class="nav-links">
+            <a href="{% url 'addCourse' %}">Add Course</a>
+            <a href="{% url 'addStudent' %}">Add Student</a>
+            <a href="{% url 'showStudents' %}">Show Students</a>
+            <a href="{% url 'loginPage' %}" style="background-color: #dc3545;">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Student Details</h1>
+        <div class="container">
+            {% for message in messages %}
+                <h5>
+                    <div class="alert alert-danger mt-5" style="width: 50%;">
+                        {{ message }}
+                    </div>
+                </h5>
+            {% endfor %}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Course Name</th>
+                    <th>Course Fee</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.course.course_name }}</td>
+                    <td>{{ student.course.course_fee }}</td>
+                    <td class="action-links">
+                        <a href="{% url 'editStudent' student.id %}">Edit</a>
+                        <a href="{% url 'deleteStudent' student.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

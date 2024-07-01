@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - University of Kent</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+        }
+        .navbar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .navbar a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            text-align: center;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            background: url('https://wallpapers.com/images/hd/books-on-grass-outside-ax3kvaaisdmmnjqi.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .main-content h1 {
+            font-size: 3em;
+            text-align: center;
+        }
+        .main-content p {
+            font-size: 1.2em;
+            text-align: center;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'adminHome' %}">Dashboard</a>
+        <a href="{% url 'addCourse' %}">Add Course</a>
+        <a href="{% url 'addStudent' %}">Add Student</a>
+        <a href="{% url 'showTeachers' %}">Show Teachers</a>
+        <a href="{% url 'showStudents' %}">Show Students</a>
+        <a href="{% url 'loginPage' %}" style="background-color: #dc3545;">Logout</a>
+    </div>
+    <div class="main-content">
+        <h1>Welcome to Admin Dashboard</h1>
+        <div class="container">
+            {% for message in messages %}
+                <h5>
+                    <div class="alert alert-danger mt-5" style="width: 50%;">
+                        {{ message }}
+                    </div>
+                </h5>
+            {% endfor %}
+        </div>
+        <p>Manage your university data and students effectively.</p>
+    </div>
+</body>
+</html>

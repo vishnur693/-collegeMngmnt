@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - University of Kent</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('profile-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .profile-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 500px;
+        }
+        .profile-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-container img {
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            max-width: 150px;
+        }
+        .profile-container .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-container .profile-info div {
+            margin-bottom: 10px;
+        }
+        .profile-container .profile-info div span {
+            font-weight: bold;
+        }
+        .profile-container .profile-info .profile-value {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Profile</h2>
+        <div class="container">
+            {% for message in messages %}
+                <h5>
+                    <div class="alert alert-danger mt-5" style="width: 50%;">
+                        {{ message }}
+                    </div>
+                </h5>
+            {% endfor %}
+        </div>
+        <img src="{{ teacher.t_pht.url }}" alt="Profile Picture">
+        <div class="profile-info">
+            <div>
+                <span>First Name:</span>
+                <span class="profile-value">{{ teacher.t_user.first_name }}</span>
+            </div>
+            <div>
+                <span>Last Name:</span>
+                <span class="profile-value">{{ teacher.t_user.last_name }}</span>
+            </div>
+            <div>
+                <span>Username:</span>
+                <span class="profile-value">{{ teacher.t_user.username }}</span>
+            </div>
+            <div>
+                <span>Email:</span>
+                <span class="profile-value">{{ teacher.t_user.email }}</span>
+            </div>
+            <div>
+                <span>Address:</span>
+                <span class="profile-value">{{ teacher.t_add }}</span>
+            </div>
+            <div>
+                <span>Age:</span>
+                <span class="profile-value">{{ teacher.t_age }}</span>
+            </div>
+            <div>
+                <span>Contact Number:</span>
+                <span class="profile-value">{{ teacher.t_cno }}</span>
+            </div>
+            <div>
+                <span>Course:</span>
+                <span class="profile-value">{{ teacher.t_course.course_name }}</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

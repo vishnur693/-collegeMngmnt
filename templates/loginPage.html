@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Kent</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://c0.wallpaperflare.com/path/672/769/108/closeup-photo-of-book-page-f1b80a6c74e77fee3a59561dc8d8d73b.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 3em;
+            margin: 20px 0;
+            color: white;
+        }
+        .quote-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 600px;
+        }
+        .quote {
+            color: black;
+            font-style: italic;
+            font-size: 1.2em;
+        }
+        .quote-author {
+            color:rgb(27, 58, 25);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .signup-btn, .login-btn {
+            display: block;
+            width: 150px;
+            padding: 15px;
+            margin: 20px auto;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .signup-btn:hover, .login-btn:hover {
+            background-color: #0056b3;
+        }
+        .login-box {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .login-box input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .login-box h2 {
+            margin: 0 0 20px 0;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white; font-family:Verdana, Geneva, Tahoma, sans-serif ;font-weight: bold;">University of Kent</h1>
+    <div class="quote-container">
+        <div class="quote">"Learning never exhausts the mind"</div>
+        <div class="quote-author">- Leonardo Da Vinci</div>
+    </div>
+    <button class="signup-btn" ><a href="{% url 'signupPage' %}" style="color: white;">Sign Up</a></button>
+    <div class="login-box">
+        <h2>Login</h2>
+        <div class="container">
+            {% for message in messages %}
+        <h5>
+            <div class="alert alert-danger mt-5" style="width: 50%;">
+                {{ message }}
+            </div>
+        </h5>
+            {% endfor %}
+        </div>
+        <form method="POST" action="{% url 'loginBtn' %}">
+            {% csrf_token %}
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <button type="submit" class="signup-btn">Log In</button>
+        </form>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</body>
+</html>
+

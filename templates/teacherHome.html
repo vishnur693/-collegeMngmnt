@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .welcome-message {
+            flex: 1;
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .logout-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box;
+            margin-top: 70px; /* Add margin to prevent overlap with fixed navbar */
+        }
+        .icon-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .icon img {
+            width: 100px;
+            height: 100px;
+        }
+        .icon span {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+        .icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="welcome-message">
+            Welcome, {{ teacher_name }}
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    <div class="main-content">
+        <div class="icon-container">
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/2522/2522138.png" alt="Edit Profile">
+                <span><a href="{% url 'editProfilePage' teacher_id %}">Edit Profile</a></span>
+            </div>
+            <div class="icon" onclick="viewProfile()">
+                <img src="https://static.thenounproject.com/png/780524-200.png" alt="View Profile">
+                <span>View Profile</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function logout() {
+            window.location.href = "{% url 'logout_view' %}";
+        }
+        function viewProfile() {
+            window.location.href = "{% url 'viewTeacher' %}";
+        }
+    </script>
+</body>
+</html>
